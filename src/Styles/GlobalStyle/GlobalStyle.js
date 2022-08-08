@@ -17,6 +17,9 @@ const GlobalStyle = createGlobalStyle`
         --color-sucess:#3FE864;
         --color-negative:#E83F5B;
     }
+    body{
+      background-color: var(--color-gray-4);
+    }
   * {
     margin: 0;
     padding: 0;
@@ -25,6 +28,12 @@ const GlobalStyle = createGlobalStyle`
   }
   ul,ol,li{
     list-style: none;
+  }
+  a{
+    text-decoration: none;
+  }
+  button{
+    cursor: pointer;
   }
 `;
 export default GlobalStyle;
