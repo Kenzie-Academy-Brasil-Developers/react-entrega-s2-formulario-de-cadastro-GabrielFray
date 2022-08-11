@@ -35,5 +35,24 @@ const GlobalStyle = createGlobalStyle`
   button{
     cursor: pointer;
   }
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #d7d4d8 #ffffff;
+  }
+
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-gray-3);
+    border-radius:0 4px 4px 0;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--color-gray-2);
+    border-radius: 10px;
+    border: 3px solid var(--color-gray-3);
+  }
 `;
 export default GlobalStyle;

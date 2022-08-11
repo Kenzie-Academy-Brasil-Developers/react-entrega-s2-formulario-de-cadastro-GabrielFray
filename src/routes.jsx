@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
-import Login from "../pages/Login";
-import ContentNotFound from "../components/ContentNotFound";
-import Register from "../pages/Register";
+import { Routes, Route} from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import ContentNotFound from "./components/ContentNotFound";
+import Register from "./pages/Register";
 
 const RoutesMain = () => {
   return (

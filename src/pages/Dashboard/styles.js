@@ -1,15 +1,25 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
+export const ContentMain = styled.div`
+  width: 100%;
+`;
 
+export const Header = styled.header`
   width: 100%;
   height: 4.5625rem;
 
   border-bottom: 0.0625rem solid var(--color-gray-3);
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0 auto;
+    padding: 0 1.25rem;
+
+    max-width: 60rem;
+    height: 100%;
+  }
   h1 {
     font-size: 1.5rem;
     color: var(--color-primary);
@@ -38,15 +48,22 @@ export const ButtonLogout = styled.button`
   }
 `;
 export const ContentUser = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-
-  padding-left: 2.1875rem;
   height: 8.125rem;
   width: 100%;
 
   border-bottom: 0.0625rem solid var(--color-gray-3);
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 0 auto;
+    padding: 0 1.25rem;
+
+    max-width: 60rem;
+    height: 100%;
+  }
   h3 {
     font-weight: 700;
     font-size: 1.5rem;
@@ -59,17 +76,79 @@ export const ContentUser = styled.div`
 
     color: var(--color-gray-1);
   }
-  @media (min-width: 23.4375rem) {
-    justify-content: space-around;
-
-    padding: 0 4%;
-  }
 `;
 export const Content = styled.div`
+  width: 100%;
   color: white;
+`;
+export const ContentNavTech = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: .9375rem;
+  justify-content: space-between;
+  gap: 0.9375rem;
+
+  margin: 0 auto;
+
+  max-width: 60rem;
+  height: 100%;
+  padding: 1.875rem 1.25rem;
+  button {
+    width: 2.0306rem;
+    height: 2rem;
+
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: var(--color-gray-3);
+    border: none;
+    border-radius: 0.25rem;
+  }
+`;
+
+export const ContentTechs = styled.div`
+  display: flex;
   justify-content: center;
-  padding: 1.5625rem 22.9%;
+
+  padding: 0rem 1.25rem;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9375rem;
+
+    width: 100%;
+    max-width: 58rem;
+    height: 37.5rem;
+    padding: 1.25rem 0;
+
+    overflow-y: auto;
+
+    border-radius: 0.25rem;
+    background-color: var(--color-gray-3);
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 95%;
+      height: 3.0625rem;
+      padding: 0rem 1.25rem;
+
+      border-radius: 0.25rem;
+      background-color: var(--color-gray-4);
+      span {
+        font-weight: 700;
+        font-size: 0.8881rem;
+      }
+      p {
+        display: flex;
+        gap: 1.875rem;
+
+        font-weight: 400;
+        font-size: 0.7614rem;
+
+        color: var(--color-gray-1);
+      }
+    }
+  }
 `;

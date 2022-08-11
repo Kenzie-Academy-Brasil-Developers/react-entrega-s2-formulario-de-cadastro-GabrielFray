@@ -1,34 +1,70 @@
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header, ButtonLogout, ContentUser, Content } from "./styles";
+import { userContext } from "../../providers/UserContext";
+import {
+  ContentMain,
+  Header,
+  ButtonLogout,
+  ContentUser,
+  ContentTechs,
+  Content,
+  ContentNavTech,
+} from "./styles";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const Dashboard = () => {
-  const user = JSON.parse(localStorage.getItem("@KenzieHub:user"));
-
   const navigate = useNavigate();
 
-  const logout = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+  const { logout } = useContext(userContext);
+
+  const userData = JSON.parse(localStorage.getItem("@KenzieHub:user"));
+
+  useEffect(() => {
+    const token = localStorage.getItem("@KenzieHub:token");
+    if (!token) {
+      navigate("/");
+    }
+  });
+
   return (
-    <div>
+    <ContentMain>
       <Header>
-        <h1>Kenzie Hub</h1>
-        <ButtonLogout onClick={() => logout()}>Sair</ButtonLogout>
+        <div>
+          <h1>Kenzie Hub</h1>
+          <ButtonLogout onClick={() => logout()}>Sair</ButtonLogout>
+        </div>
       </Header>
       <main>
         <ContentUser>
-          <h3>Olá, {user.name}</h3>
-          <span>{user.course_module}</span>
+          <div>
+            <h3>Olá, {userData?.name}</h3>
+            <span>{userData?.course_module}</span>
+          </div>
         </ContentUser>
         <Content>
-          <h2>Que pena! Estamos em desenvolvimento :(</h2>
-          <p>
-            Nossa aplicação está em desenvolvimento, em breve teremos novidades
-          </p>
+          <ContentNavTech>
+            <h2>Tecnologias</h2>
+            <button>+</button>
+          </ContentNavTech>
+          <ContentTechs>
+            <ul>
+              {userData.techs.map((elem) => (
+                <li key={elem.id}>
+                  <span>{elem.title}</span>
+                  <p>
+                    {elem.status}
+                    <FaRegTrashAlt
+                      size={"1.3em"}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </ContentTechs>
         </Content>
       </main>
-    </div>
+    </ContentMain>
   );
 };
 

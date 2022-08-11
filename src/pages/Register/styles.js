@@ -19,16 +19,13 @@ export const ContentMain = styled.div`
   }
   header {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
+    margin: 0 auto;
+    padding: 30px 20px;
     width: 100%;
-    padding: 3.125rem 0 0.625rem 0;
-    > div {
-      display: flex;
-      justify-content: space-between;
-      width: 88%;
-    }
+    max-width: 480px;
+
     h2 {
       color: var(--color-primary);
       margin-bottom: 2.1875rem;
@@ -38,42 +35,6 @@ export const ContentMain = styled.div`
       font-size: 0.5996rem;
 
       color: var(--color-gray-1);
-    }
-  }
-
-  @media (min-width: 768px) {
-    header {
-      > div {
-        width: 48%;
-      }
-    }
-  }
-  @media (min-width: 1024px) {
-    header {
-      > div {
-        width: 36%;
-      }
-    }
-  }
-  @media (min-width: 1440px) {
-    header {
-      > div {
-        width: 25%;
-      }
-    }
-  }
-  @media (min-width: 1500px) {
-    header {
-      > div {
-        width: 19%;
-      }
-    }
-  }
-  @media (min-width: 2560px) {
-    header {
-      > div {
-        width: 14%;
-      }
     }
   }
 

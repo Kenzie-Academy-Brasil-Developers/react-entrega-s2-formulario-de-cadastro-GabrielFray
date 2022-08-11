@@ -1,11 +1,10 @@
-import api from "../../services/api";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formRegisterSchema } from "../../validations";
+import { userContext } from "../../providers/UserContext";
+import { useContext } from "react";
 import Selection from "../../components/Selection";
-import { useNavigate } from "react-router-dom";
 
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   ContentInputLabel,
@@ -16,7 +15,7 @@ import {
 } from "./styles";
 
 const Register = () => {
-  const navigate = useNavigate();
+  const { onSubmitRegister } = useContext(userContext);
 
   const {
     register,
@@ -25,44 +24,14 @@ const Register = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(formRegisterSchema) });
 
-  const onSubmit = (data) => {
-    api
-      .post("/users", data)
-      .then((res) => {
-        navigate("/");
-        toast.success("Perfil criado com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message, {
-          toastId: 1,
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
   return (
     <ContentMain>
       <div>
         <header>
-          <div>
-            <h2>Kenzie Hub</h2>
-            <LinkStyled to="/">Voltar</LinkStyled>
-          </div>
+          <h2>Kenzie Hub</h2>
+          <LinkStyled to="/">Voltar</LinkStyled>
         </header>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmitRegister)}>
           <h3>Crie sua Conta</h3>
           <span>Rapido e grátis, vamos nessa</span>
           <ContentInputLabel>

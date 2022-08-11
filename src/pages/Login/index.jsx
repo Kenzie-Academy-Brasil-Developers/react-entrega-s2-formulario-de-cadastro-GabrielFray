@@ -1,10 +1,7 @@
-import api from "../../services/api";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formLoginSchema } from "../../validations";
-import { useNavigate } from "react-router-dom";
 
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   ContentInputLabel,
@@ -12,54 +9,31 @@ import {
   ErrorMessage,
   LinkStyled,
 } from "./styles";
+import { useContext, useEffect } from "react";
+import { userContext } from "../../providers/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const { onSubmitLogin } = useContext(userContext);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("@KenzieHub:token");
+    if (token) {
+      navigate("/dashboard");
+    }
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(formLoginSchema) });
-
-  const onSubmit = (data) => {
-    api
-      .post("/sessions", data)
-      .then((res) => {
-        localStorage.setItem("@KenzieHub:token", res.data.token);
-        localStorage.setItem("@KenzieHub:user", JSON.stringify(res.data.user));
-        console.log(res.data.user);
-
-        navigate("./dashboard");
-
-        toast.success("Logado com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Login e senha incorreto!", {
-          toastId: 1,
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
   return (
     <ContentMain>
       <h2>Kenzie Hub</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitLogin)}>
         <h3>Login</h3>
         <ContentInputLabel>
           <label>Email</label>

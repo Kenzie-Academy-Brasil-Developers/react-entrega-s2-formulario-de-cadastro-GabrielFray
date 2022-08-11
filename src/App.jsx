@@ -2,23 +2,14 @@ import Routes from "./routes";
 
 import { ToastContainer } from "react-toastify";
 
+import UserProvider from "./providers/UserContext";
+
 function App() {
   return (
-    <>
+    <UserProvider>
       <Routes></Routes>;
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <ToastContainer />
-    </>
+    </UserProvider>
   );
 }
 
