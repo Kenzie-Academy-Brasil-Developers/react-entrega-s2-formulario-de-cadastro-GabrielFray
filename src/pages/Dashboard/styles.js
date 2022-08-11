@@ -91,15 +91,23 @@ export const ContentNavTech = styled.div`
   max-width: 60rem;
   height: 100%;
   padding: 1.875rem 1.25rem;
-  button {
-    width: 2.0306rem;
-    height: 2rem;
+`;
+export const ButtonOpen = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: var(--color-gray-3);
-    border: none;
-    border-radius: 0.25rem;
+  width: 2.0306rem;
+  height: 2rem;
+
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: var(--color-gray-3);
+  border: none;
+  border-radius: 0.25rem;
+
+  :hover {
+    animation: pulse 1.5s infinite;
   }
 `;
 
@@ -113,11 +121,11 @@ export const ContentTechs = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.9375rem;
+    gap: 1rem;
 
     width: 100%;
     max-width: 58rem;
-    height: 37.5rem;
+    max-height: 37.8rem;
     padding: 1.25rem 0;
 
     overflow-y: auto;
@@ -136,6 +144,10 @@ export const ContentTechs = styled.div`
 
       border-radius: 0.25rem;
       background-color: var(--color-gray-4);
+
+      :hover {
+        background-color: var(--color-gray-2);
+      }
       span {
         font-weight: 700;
         font-size: 0.8881rem;

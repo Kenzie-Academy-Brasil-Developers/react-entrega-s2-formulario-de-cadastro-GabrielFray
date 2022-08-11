@@ -20,16 +20,16 @@ const UserProvider = ({ children }) => {
     if (!token) {
       navigate("/");
     }
-  });
+  }, []);
 
   const onSubmitRegister = (data) => {
     api
       .post("/users", data)
-      .then((res) => {
+      .then(() => {
         navigate("/");
         toast.success("Perfil criado com sucesso!", {
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -41,7 +41,7 @@ const UserProvider = ({ children }) => {
         toast.error(err.response.data.message, {
           toastId: 1,
           position: "top-right",
-          autoClose: 5000,
+          autoClose: 1000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,

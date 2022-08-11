@@ -4,11 +4,15 @@ import { ToastContainer } from "react-toastify";
 
 import UserProvider from "./providers/UserContext";
 
+import TechProvider from "./providers/TechProvider";
+
 function App() {
   return (
     <UserProvider>
-      <Routes></Routes>;
-      <ToastContainer />
+      <TechProvider>
+        <Routes></Routes>;
+        <ToastContainer />
+      </TechProvider>
     </UserProvider>
   );
 }

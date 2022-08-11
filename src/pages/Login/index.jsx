@@ -23,7 +23,7 @@ const Login = () => {
     if (token) {
       navigate("/dashboard");
     }
-  });
+  }, [navigate]);
 
   const {
     register,

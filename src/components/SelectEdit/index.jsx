@@ -35,26 +35,24 @@ const colourStyles = {
     ...styles,
     backgroundColor: "var(--color-gray-2)",
     overFlowY: "auto",
-    height: "130px",
   }),
 };
 
-const Selection = ({ inputRef, value, onChange }) => {
+const SelectEdit = ({ inputRef, value, onChange }) => {
   const options = [
     {
-      value: "Primeiro módulo (Introdução ao Frontend)",
-      label: "Primeiro Módulo",
+      value: "Iniciante",
+      label: "Iniciante",
     },
-    { value: "Segundo módulo (Frontend Avançado)", label: "Segundo Módulo" },
+    { value: "Intermediário", label: "Intermediário" },
     {
-      value: "Terceiro módulo (Introdução ao Backend)",
-      label: "Terceiro Módulo",
+      value: "Avançado",
+      label: "Avançado",
     },
-    { value: "Quarto módulo (Backend Avançado)", label: "Quarto Módulo" },
   ];
   return (
     <>
-      <label>Selecionar módulo</label>
+      <label>Selecionar status</label>
       <Select
         menuPlacement="auto"
         options={options}
@@ -67,4 +65,4 @@ const Selection = ({ inputRef, value, onChange }) => {
     </>
   );
 };
-export default Selection;
+export default SelectEdit;

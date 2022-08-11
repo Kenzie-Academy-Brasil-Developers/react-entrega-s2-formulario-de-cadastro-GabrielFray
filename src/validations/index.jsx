@@ -20,3 +20,7 @@ export const formRegisterSchema = yup.object().shape({
   contact: yup.string().required("Campo obrigatório"),
   course_module: yup.string().required("Campo obrigatório"),
 });
+
+export const formCreateModalSchema = yup.object().shape({
+  title: yup.string().required("Campo obrigatório"),
+});
