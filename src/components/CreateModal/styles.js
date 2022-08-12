@@ -11,6 +11,7 @@ export const ContentMain = styled.div`
   height: 100%;
 
   position: fixed;
+  z-index: 50;
   backdrop-filter: blur(0.1875rem);
   h2 {
     color: var(--color-primary);

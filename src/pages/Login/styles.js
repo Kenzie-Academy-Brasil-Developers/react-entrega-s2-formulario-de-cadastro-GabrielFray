@@ -109,3 +109,8 @@ export const ErrorMessage = styled.div`
   align-self: flex-start;
   padding: 7px 0 0 1.5rem;
 `;
+export const ContentImage = styled.div`
+  position: absolute;
+  z-index: -50;
+  width: 80%;
+`;

@@ -2,11 +2,14 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formRegisterSchema } from "../../validations";
 import { userContext } from "../../providers/UserContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import Lottie from "react-lottie";
 import Selection from "../../components/Selection";
 
+import background from "../../assets/background.json";
 import "react-toastify/dist/ReactToastify.css";
 import {
+  ContentImage,
   ContentInputLabel,
   ContentMain,
   ContentSelect,
@@ -23,6 +26,17 @@ const Register = () => {
     control,
     formState: { errors },
   } = useForm({ resolver: yupResolver(formRegisterSchema) });
+
+  const [animateState] = useState({ isStopped: false, isPaused: false });
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: background,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   return (
     <ContentMain>
@@ -104,6 +118,13 @@ const Register = () => {
           </ContentSelect>
           <button type="submit">Cadastrar</button>
         </form>
+        <ContentImage>
+          <Lottie
+            options={defaultOptions}
+            isStopped={animateState.isStopped}
+            isPaused={animateState.isPaused}
+          />
+        </ContentImage>
       </div>
     </ContentMain>
   );

@@ -1,6 +1,8 @@
 import { FaEllipsisH } from "react-icons/fa";
-import { useContext, useEffect } from "react";
+import Lottie from "react-lottie";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import noTechs from "../../assets/noTechs.json";
 
 import { userContext } from "../../providers/UserContext";
 import { TechProviderContext } from "../../providers/TechProvider";
@@ -15,6 +17,7 @@ import {
   Content,
   ContentNavTech,
   ButtonOpen,
+  ContentImage,
 } from "./styles";
 import EditModal from "../../components/EditModal";
 import api from "../../services/api";
@@ -53,6 +56,17 @@ const Dashboard = () => {
       .catch((err) => console.log(err));
   }, [registerModal, editModal, token, setTechs]);
 
+  const [animateState] = useState({ isStopped: false, isPaused: false });
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: noTechs,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <ContentMain>
       {registerModal && <CreateModal />}
@@ -76,24 +90,34 @@ const Dashboard = () => {
             <ButtonOpen onClick={() => setRegisterModal(true)}>+</ButtonOpen>
           </ContentNavTech>
           <ContentTechs>
-            <ul>
-              {techs?.map((elem) => (
-                <li key={elem.id}>
-                  <span>{elem.title}</span>
-                  <p>
-                    {elem.status}
-                    <FaEllipsisH
-                      size={"1.3em"}
-                      style={{ cursor: "pointer" }}
-                      onClick={() => {
-                        setEditModal(elem.id);
-                        setValues({ title: elem.title, status: elem.status });
-                      }}
-                    />
-                  </p>
-                </li>
-              ))}
-            </ul>
+            {techs.toString() !== "" ? (
+              <ul>
+                {techs?.map((elem) => (
+                  <li key={elem.id}>
+                    <span>{elem.title}</span>
+                    <p>
+                      {elem.status}
+                      <FaEllipsisH
+                        size={"1.3em"}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          setEditModal(elem.id);
+                          setValues({ title: elem.title, status: elem.status });
+                        }}
+                      />
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <ContentImage>
+                <Lottie
+                  options={defaultOptions}
+                  isStopped={animateState.isStopped}
+                  isPaused={animateState.isPaused}
+                />
+              </ContentImage>
+            )}
           </ContentTechs>
         </Content>
       </main>

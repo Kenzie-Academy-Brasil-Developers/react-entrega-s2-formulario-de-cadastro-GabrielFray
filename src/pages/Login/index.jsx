@@ -2,16 +2,19 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formLoginSchema } from "../../validations";
 
+import background from "../../assets/background.json";
 import "react-toastify/dist/ReactToastify.css";
 import {
+  ContentImage,
   ContentInputLabel,
   ContentMain,
   ErrorMessage,
   LinkStyled,
 } from "./styles";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { userContext } from "../../providers/UserContext";
 import { useNavigate } from "react-router-dom";
+import Lottie from "react-lottie";
 
 const Login = () => {
   const { onSubmitLogin } = useContext(userContext);
@@ -30,6 +33,18 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(formLoginSchema) });
+
+  const [animateState] = useState({ isStopped: false, isPaused: false });
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: background,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
   return (
     <ContentMain>
       <h2>Kenzie Hub</h2>
@@ -53,6 +68,13 @@ const Login = () => {
         <span>Ainda não possui uma conta?</span>
         <LinkStyled to="/register">Cadastre-se</LinkStyled>
       </form>
+      <ContentImage>
+        <Lottie
+          options={defaultOptions}
+          isStopped={animateState.isStopped}
+          isPaused={animateState.isPaused}
+        />
+      </ContentImage>
     </ContentMain>
   );
 };

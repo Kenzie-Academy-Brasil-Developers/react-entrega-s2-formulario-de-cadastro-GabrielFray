@@ -164,3 +164,7 @@ export const ContentTechs = styled.div`
     }
   }
 `;
+export const ContentImage = styled.div`
+  position: absolute;
+  width: 50%;
+`;
