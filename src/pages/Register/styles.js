@@ -29,6 +29,8 @@ export const ContentMain = styled.div`
     h2 {
       color: var(--color-primary);
       margin-bottom: 2.1875rem;
+
+      animation: bounceInDown 1s;
     }
     span {
       font-weight: 400;
@@ -51,6 +53,9 @@ export const ContentMain = styled.div`
     border-radius: 0.25rem;
     background-color: var(--color-gray-3);
     color: var(--color-gray-0);
+
+    animation: fadeIn 1s;
+
     h3 {
       font-size: 1.125rem;
       font-weight: 700;
@@ -95,11 +100,10 @@ export const LinkStyled = styled(Link)`
 
   font-weight: 600;
   font-size: 0.5996rem;
+
+  animation: bounceInDown 1s;
   :focus {
     background-color: var(--color-gray-1);
-  }
-  :hover {
-    animation: pulse 1.5s infinite;
   }
 `;
 
@@ -171,5 +175,6 @@ export const ErrorMessage = styled.div`
 export const ContentImage = styled.div`
   position: absolute;
   z-index: -50;
-  width: 80%;
+  width: 100%;
+  height: 100%;
 `;

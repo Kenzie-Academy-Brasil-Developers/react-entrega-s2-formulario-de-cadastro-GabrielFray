@@ -23,6 +23,8 @@ export const Header = styled.header`
   h1 {
     font-size: 1.5rem;
     color: var(--color-primary);
+
+    animation: fadeInDownBig 1s;
   }
 `;
 export const ButtonLogout = styled.button`
@@ -40,11 +42,10 @@ export const ButtonLogout = styled.button`
 
   font-weight: 600;
   font-size: 0.5996rem;
+
+  animation: fadeInDownBig 1s;
   :focus {
     background-color: var(--color-gray-1);
-  }
-  :hover {
-    animation: pulse 1.5s infinite;
   }
 `;
 export const ContentUser = styled.div`
@@ -69,12 +70,16 @@ export const ContentUser = styled.div`
     font-size: 1.5rem;
 
     color: var(--color-gray-0);
+
+    animation: fadeIn 1s;
   }
   span {
     font-weight: 400;
     font-size: 0.85rem;
 
     color: var(--color-gray-1);
+
+    animation: fadeIn 1s;
   }
 `;
 export const Content = styled.div`
@@ -91,6 +96,8 @@ export const ContentNavTech = styled.div`
   max-width: 60rem;
   height: 100%;
   padding: 1.875rem 1.25rem;
+
+  animation: fadeIn 1s;
 `;
 export const ButtonOpen = styled.button`
   display: flex;
@@ -145,6 +152,8 @@ export const ContentTechs = styled.div`
       border-radius: 0.25rem;
       background-color: var(--color-gray-4);
 
+      animation: fadeInLeft 1s;
+
       :hover {
         background-color: var(--color-gray-2);
       }
@@ -166,5 +175,8 @@ export const ContentTechs = styled.div`
 `;
 export const ContentImage = styled.div`
   position: absolute;
-  width: 50%;
+  width: 90%;
+  @media (min-width: 768px) {
+    width: 50%;
+  }
 `;

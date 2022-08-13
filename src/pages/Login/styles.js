@@ -14,6 +14,7 @@ export const ContentMain = styled.div`
   h2 {
     color: var(--color-primary);
     margin-bottom: 2.1875rem;
+    animation: backInUp 1.3s;
   }
   form {
     display: flex;
@@ -28,6 +29,8 @@ export const ContentMain = styled.div`
     border-radius: 0.25rem;
     background-color: var(--color-gray-3);
     color: var(--color-gray-0);
+
+    animation: backInUp 1s;
     h3 {
       font-size: 1.125rem;
       font-weight: 700;
@@ -112,5 +115,6 @@ export const ErrorMessage = styled.div`
 export const ContentImage = styled.div`
   position: absolute;
   z-index: -50;
-  width: 80%;
+  width: 100%;
+  height: 100%;
 `;

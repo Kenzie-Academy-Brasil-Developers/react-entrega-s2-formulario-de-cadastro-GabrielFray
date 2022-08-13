@@ -119,11 +119,7 @@ const Register = () => {
           <button type="submit">Cadastrar</button>
         </form>
         <ContentImage>
-          <Lottie
-            options={defaultOptions}
-            isStopped={animateState.isStopped}
-            isPaused={animateState.isPaused}
-          />
+          <Lottie options={defaultOptions} isPaused={animateState.isPaused} />
         </ContentImage>
       </div>
     </ContentMain>

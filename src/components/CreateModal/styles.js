@@ -13,6 +13,7 @@ export const ContentMain = styled.div`
   position: fixed;
   z-index: 50;
   backdrop-filter: blur(0.1875rem);
+
   h2 {
     color: var(--color-primary);
     margin-bottom: 2.1875rem;
