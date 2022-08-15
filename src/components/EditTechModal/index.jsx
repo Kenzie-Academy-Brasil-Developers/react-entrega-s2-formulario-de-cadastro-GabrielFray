@@ -1,7 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
 import { useContext } from "react";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { formCreateModalSchema } from "../../validations";
 import "react-toastify/dist/ReactToastify.css";
 
 import { TechProviderContext } from "../../providers/TechProvider";
@@ -11,39 +9,36 @@ import SelectEdit from "../SelectEdit";
 import { AiOutlineClose } from "react-icons/ai";
 import {
   ButtonClose,
-  ButtonRegister,
+  ContentButton,
   ContentHeader,
   ContentInputLabel,
   ContentMain,
-  ErrorMessage,
 } from "./styles";
 
-const CreateModal = () => {
-  const { setRegisterModal, createTech } = useContext(TechProviderContext);
+const EditTechModal = () => {
+  const { setEditModal, deleteTech, editModal, values, editTech } =
+    useContext(TechProviderContext);
 
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(formCreateModalSchema) });
+  const { control, handleSubmit } = useForm({
+    defaultValues: { status: values.status },
+  });
+
+  const handleEdit = (formData) => {
+    editTech(editModal, formData);
+  };
+
   return (
     <ContentMain>
-      <form onSubmit={handleSubmit(createTech)}>
+      <form onSubmit={handleSubmit(handleEdit)}>
         <ContentHeader>
-          <h3>Cadastrar Tecnologia</h3>
-          <ButtonClose onClick={() => setRegisterModal(false)}>
+          <h3>Detalhes das Tecnologias</h3>
+          <ButtonClose onClick={() => setEditModal(false)}>
             <AiOutlineClose size={"1.3em"} style={{ cursor: "pointer" }} />
           </ButtonClose>
         </ContentHeader>
         <ContentInputLabel>
           <label>Nome da tecnologia</label>
-          <input
-            type="text"
-            placeholder="Nome da tecnologia"
-            {...register("title")}
-          />
-          <ErrorMessage>{errors.name?.message}</ErrorMessage>
+          <span className="titleTech">{values.title}</span>
         </ContentInputLabel>
         <ContentSelect>
           <Controller
@@ -59,10 +54,17 @@ const CreateModal = () => {
             )}
           />
         </ContentSelect>
-        <ButtonRegister type="submit">Cadastrar Tecnologia</ButtonRegister>
+        <ContentButton>
+          <button className="buttonSaveEdit" type="submit">
+            Salvar alterações
+          </button>
+          <button className="delete" onClick={() => deleteTech(editModal)}>
+            Excluir
+          </button>
+        </ContentButton>
       </form>
     </ContentMain>
   );
 };
 
-export default CreateModal;
+export default EditTechModal;

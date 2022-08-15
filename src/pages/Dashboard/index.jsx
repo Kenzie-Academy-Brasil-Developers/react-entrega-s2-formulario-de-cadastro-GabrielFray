@@ -7,7 +7,7 @@ import noTechs from "../../assets/noTechs.json";
 import { userContext } from "../../providers/UserContext";
 import { TechProviderContext } from "../../providers/TechProvider";
 
-import CreateModal from "../../components/CreateModal";
+import CreateModalTech from "../../components/CreateModalTech";
 import {
   ContentMain,
   Header,
@@ -19,7 +19,7 @@ import {
   ButtonOpen,
   ContentImage,
 } from "./styles";
-import EditModal from "../../components/EditModal";
+import EditTechModal from "../../components/EditTechModal";
 import api from "../../services/api";
 
 const Dashboard = () => {
@@ -69,8 +69,8 @@ const Dashboard = () => {
 
   return (
     <ContentMain>
-      {registerModal && <CreateModal />}
-      {editModal && <EditModal />}
+      {registerModal && <CreateModalTech />}
+      {editModal && <EditTechModal />}
       <Header>
         <div>
           <h1>Kenzie Hub</h1>

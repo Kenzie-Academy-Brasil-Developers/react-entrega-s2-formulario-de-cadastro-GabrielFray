@@ -11,44 +11,45 @@ import SelectEdit from "../SelectEdit";
 import { AiOutlineClose } from "react-icons/ai";
 import {
   ButtonClose,
-  ContentButton,
+  ButtonRegister,
   ContentHeader,
   ContentInputLabel,
   ContentMain,
   ErrorMessage,
 } from "./styles";
 
-const EditModal = () => {
-  const { setEditModal, deleteTech, editModal, values } =
-    useContext(TechProviderContext);
+const CreateModalTech = () => {
+  const { setRegisterModal, createTech } = useContext(TechProviderContext);
 
   const {
+    register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(formCreateModalSchema),
-    defaultValues: { course_module: values.status },
-  });
+  } = useForm({ resolver: yupResolver(formCreateModalSchema) });
   return (
     <ContentMain>
-      <form onSubmit={(event) => event.preventDefault()}>
+      <form onSubmit={handleSubmit(createTech)}>
         <ContentHeader>
-          <h3>Detalhes das Tecnologias</h3>
-          <ButtonClose onClick={() => setEditModal(false)}>
+          <h3>Cadastrar Tecnologia</h3>
+          <ButtonClose onClick={() => setRegisterModal(false)}>
             <AiOutlineClose size={"1.3em"} style={{ cursor: "pointer" }} />
           </ButtonClose>
         </ContentHeader>
         <ContentInputLabel>
           <label>Nome da tecnologia</label>
-          <span className="titleTech">{values.title}</span>
+          <input
+            type="text"
+            placeholder="Nome da tecnologia"
+            {...register("title")}
+          />
           <ErrorMessage>{errors.name?.message}</ErrorMessage>
         </ContentInputLabel>
         <ContentSelect>
           <Controller
             defaultValue="Iniciante"
             control={control}
-            name="course_module"
+            name="status"
             render={({ field: { onChange, value, ref } }) => (
               <SelectEdit
                 inputRef={ref}
@@ -58,17 +59,10 @@ const EditModal = () => {
             )}
           />
         </ContentSelect>
-        <ContentButton>
-          <button className="buttonSaveEdit" onClick={handleSubmit()}>
-            Salvar alterações
-          </button>
-          <button className="delete" onClick={() => deleteTech(editModal)}>
-            Excluir
-          </button>
-        </ContentButton>
+        <ButtonRegister type="submit">Cadastrar Tecnologia</ButtonRegister>
       </form>
     </ContentMain>
   );
 };
 
-export default EditModal;
+export default CreateModalTech;

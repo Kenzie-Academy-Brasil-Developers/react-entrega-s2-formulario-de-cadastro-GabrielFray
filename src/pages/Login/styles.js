@@ -46,6 +46,9 @@ export const ContentMain = styled.div`
       background-color: var(--color-primary);
       color: var(--color-gray-0);
 
+      :focus {
+        background-color: var(--color-primary-negative);
+      }
       :hover {
         animation: pulse 1.5s infinite;
       }

@@ -48,6 +48,27 @@ const TechProvider = ({ children }) => {
       });
   };
 
+  const editTech = (tech_id, data) => {
+    api
+      .put(`/users/techs/${tech_id}`, data, {
+        headers: { Authorization: `Bearer ${token} ` },
+      })
+      .then(() => {
+        toast.success("Status da tecnologia atualizada!", {
+          toastId: 1,
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setEditModal(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
   const deleteTech = (tech_id) => {
     api
       .delete(`/users/techs/${tech_id}`, {
@@ -81,6 +102,7 @@ const TechProvider = ({ children }) => {
         deleteTech,
         values,
         setValues,
+        editTech,
       }}
     >
       {children}

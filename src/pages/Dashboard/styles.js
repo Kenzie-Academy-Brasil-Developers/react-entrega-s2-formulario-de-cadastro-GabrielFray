@@ -113,6 +113,10 @@ export const ButtonOpen = styled.button`
   border: none;
   border-radius: 0.25rem;
 
+  :focus {
+    background-color: var(--color-gray-1);
+  }
+
   :hover {
     animation: pulse 1.5s infinite;
   }
