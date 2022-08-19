@@ -4,8 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import noTechs from "../../assets/noTechs.json";
 
-import { UserContext } from "../../providers/UserContext";
-import { TechProviderContext } from "../../providers/TechProvider";
+import { UserContext } from "../../context/UserContext";
+import { TechProviderContext } from "../../context/TechContext";
 
 import CreateModalTech from "../../components/CreateModalTech";
 import {

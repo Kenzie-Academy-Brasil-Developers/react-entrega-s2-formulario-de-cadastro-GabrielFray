@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-import { TechProviderContext } from "../../providers/TechProvider";
+import { TechProviderContext } from "../../context/TechContext";
 import { ContentSelect } from "../../pages/Register/styles";
 
 import SelectEdit, { IOptionType } from "../SelectEdit";
@@ -25,7 +25,7 @@ const EditTechModal = () => {
 
   const handleEdit = (formData: { status: string | undefined }) => {
     if (values.id) {
-      editTech(values.id, formData)
+      editTech(values.id, formData);
     }
   };
   const onChangeAux = (
@@ -67,10 +67,11 @@ const EditTechModal = () => {
             Salvar alterações
           </button>
           <button
+            type="button"
             className="delete"
-            onClick={(event) => {
+            onClick={() => {
               if (values.id) {
-                deleteTech(values.id, event);
+                deleteTech(values.id);
               }
             }}
           >

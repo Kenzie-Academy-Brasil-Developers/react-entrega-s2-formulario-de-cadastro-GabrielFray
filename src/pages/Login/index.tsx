@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formLoginSchema } from "../../validations";
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../providers/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Lottie from "react-lottie";
 

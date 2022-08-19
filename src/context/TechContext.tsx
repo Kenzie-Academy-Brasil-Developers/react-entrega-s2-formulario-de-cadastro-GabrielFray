@@ -42,7 +42,7 @@ interface ITechContext {
 
   editTech: (tech_id: string, data: ITechData) => void;
 
-  deleteTech: (tech_id: string, event: any) => void;
+  deleteTech: (tech_id: string) => void;
 }
 
 const TechProvider = ({ children }: IProps) => {
@@ -109,8 +109,7 @@ const TechProvider = ({ children }: IProps) => {
       .catch((err) => console.log(err));
   };
 
-  const deleteTech = (tech_id: string, event: any) => {
-    event.stopPropagation();
+  const deleteTech = (tech_id: string) => {
     api
       .delete(`/users/techs/${tech_id}`, {
         headers: { Authorization: `Bearer ${token} ` },

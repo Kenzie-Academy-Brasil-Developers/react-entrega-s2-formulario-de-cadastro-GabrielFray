@@ -1,7 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formRegisterSchema } from "../../validations";
-import { UserContext } from "../../providers/UserContext";
+import { UserContext } from "../../context/UserContext";
 import { useContext, useState } from "react";
 import Selection from "../../components/Selection";
 import Lottie from "react-lottie";
