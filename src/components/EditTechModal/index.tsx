@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { TechProviderContext } from "../../providers/TechProvider";
 import { ContentSelect } from "../../pages/Register/styles";
 
-import SelectEdit from "../SelectEdit";
+import SelectEdit, { IOptionType } from "../SelectEdit";
 import { AiOutlineClose } from "react-icons/ai";
 import {
   ButtonClose,
@@ -16,15 +16,23 @@ import {
 } from "./styles";
 
 const EditTechModal = () => {
-  const { setEditModal, deleteTech, editModal, values, editTech } =
+  const { setEditModal, deleteTech, values, editTech } =
     useContext(TechProviderContext);
 
   const { control, handleSubmit } = useForm({
     defaultValues: { status: values.status },
   });
 
-  const handleEdit = (formData) => {
-    editTech(editModal, formData);
+  const handleEdit = (formData: { status: string | undefined }) => {
+    if (values.id) {
+      editTech(values.id, formData)
+    }
+  };
+  const onChangeAux = (
+    event: IOptionType,
+    onChange: (value: string) => void
+  ) => {
+    onChange(event.value);
   };
 
   return (
@@ -45,11 +53,11 @@ const EditTechModal = () => {
             defaultValue="Iniciante"
             control={control}
             name="status"
-            render={({ field: { onChange, value, ref } }) => (
+            render={({ field: { onChange } }) => (
               <SelectEdit
-                inputRef={ref}
-                value={value}
-                onChange={(event) => onChange(event.value)}
+                onChange={(event) =>
+                  onChangeAux(event as IOptionType, onChange)
+                }
               />
             )}
           />
@@ -58,7 +66,14 @@ const EditTechModal = () => {
           <button className="buttonSaveEdit" type="submit">
             Salvar alterações
           </button>
-          <button className="delete" onClick={() => deleteTech(editModal)}>
+          <button
+            className="delete"
+            onClick={(event) => {
+              if (values.id) {
+                deleteTech(values.id, event);
+              }
+            }}
+          >
             Excluir
           </button>
         </ContentButton>

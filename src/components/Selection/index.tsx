@@ -1,7 +1,7 @@
 import React from "react";
-import Select from "react-select";
+import Select, { StylesConfig } from "react-select";
 
-const colourStyles = {
+const colourStyles: StylesConfig = {
   control: (styles) => ({
     ...styles,
     backgroundColor: "var(--color-gray-2)",
@@ -35,34 +35,43 @@ const colourStyles = {
     ...styles,
     backgroundColor: "var(--color-gray-2)",
     overFlowY: "auto",
+    height: "130px",
   }),
 };
 
-const SelectEdit = ({ inputRef, value, onChange }) => {
-  const options = [
+type IOptionType = {
+  value: string;
+  label: string;
+};
+
+type FieldError = {
+  onChange: (event: IOptionType) => void;
+};
+
+const Selection = ({ onChange }: FieldError) => {
+  const options: IOptionType[] = [
     {
-      value: "Iniciante",
-      label: "Iniciante",
+      value: "Primeiro módulo (Introdução ao Frontend)",
+      label: "Primeiro Módulo",
     },
-    { value: "Intermediário", label: "Intermediário" },
+    { value: "Segundo módulo (Frontend Avançado)", label: "Segundo Módulo" },
     {
-      value: "Avançado",
-      label: "Avançado",
+      value: "Terceiro módulo (Introdução ao Backend)",
+      label: "Terceiro Módulo",
     },
+    { value: "Quarto módulo (Backend Avançado)", label: "Quarto Módulo" },
   ];
   return (
     <>
-      <label>Selecionar status</label>
+      <label>Selecionar módulo</label>
       <Select
         menuPlacement="auto"
         options={options}
         styles={colourStyles}
         className="Selection"
-        inputRef={inputRef}
-        value={options.find((elem) => elem.value === value)}
-        onChange={onChange}
+        onChange={(event) => onChange(event as IOptionType)}
       />
     </>
   );
 };
-export default SelectEdit;
+export default Selection;

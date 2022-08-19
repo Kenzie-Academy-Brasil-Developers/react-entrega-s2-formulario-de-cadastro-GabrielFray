@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import noTechs from "../../assets/noTechs.json";
 
-import { userContext } from "../../providers/UserContext";
+import { UserContext } from "../../providers/UserContext";
 import { TechProviderContext } from "../../providers/TechProvider";
 
 import CreateModalTech from "../../components/CreateModalTech";
@@ -22,8 +22,14 @@ import {
 import EditTechModal from "../../components/EditTechModal";
 import api from "../../services/api";
 
+interface ITechData {
+  id: string;
+  title: string;
+  status: string;
+}
+
 const Dashboard = () => {
-  const { logout } = useContext(userContext);
+  const { logout } = useContext(UserContext);
 
   const {
     registerModal,
@@ -37,7 +43,7 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
 
-  const userData = JSON.parse(localStorage.getItem("@KenzieHub:user"));
+  const userData = JSON.parse(localStorage.getItem("@KenzieHub:user") || "{}");
 
   const token = localStorage.getItem("@KenzieHub:token");
 
@@ -92,17 +98,22 @@ const Dashboard = () => {
           <ContentTechs>
             {techs.toString() !== "" ? (
               <ul>
-                {techs?.map((elem) => (
+                {techs?.map((elem: ITechData) => (
                   <li key={elem.id}>
                     <span>{elem.title}</span>
                     <p>
                       {elem.status}
                       <FaEllipsisH
+                        id={elem.id}
                         size={"1.3em"}
                         style={{ cursor: "pointer" }}
                         onClick={() => {
-                          setEditModal(elem.id);
-                          setValues({ title: elem.title, status: elem.status });
+                          setEditModal(true);
+                          setValues({
+                            title: elem.title,
+                            status: elem.status,
+                            id: elem.id,
+                          });
                         }}
                       />
                     </p>

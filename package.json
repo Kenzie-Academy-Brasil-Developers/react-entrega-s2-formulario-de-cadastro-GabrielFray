@@ -7,10 +7,9 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
+    "@types/react-lottie": "^1.2.6",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
-    "lottie": "^0.0.1",
-    "lottie-web": "^5.9.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.34.0",
@@ -47,5 +46,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "typescript": "^4.7.4"
   }
 }

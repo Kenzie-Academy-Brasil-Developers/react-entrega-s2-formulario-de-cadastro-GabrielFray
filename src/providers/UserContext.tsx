@@ -1,13 +1,38 @@
-import { createContext, useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useEffect, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
-export const userContext = createContext({});
+export const UserContext = createContext({} as IUserContext);
 
-const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+interface IProps {
+  children: ReactNode;
+}
 
+interface IRegisterData {
+  email: string;
+  password: string;
+  name: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
+
+interface ILoginData {
+  email: string;
+  password: string;
+}
+
+interface IUserContext {
+  onSubmitRegister: (data: IRegisterData) => void;
+
+  onSubmitLogin: (data: ILoginData) => void;
+
+  logout: () => void;
+}
+
+const UserProvider = ({ children }: IProps) => {
   const navigate = useNavigate();
 
   const logout = () => {
@@ -22,7 +47,7 @@ const UserProvider = ({ children }) => {
     }
   }, []);
 
-  const onSubmitRegister = (data) => {
+  const onSubmitRegister = (data: IRegisterData) => {
     api
       .post("/users", data)
       .then(() => {
@@ -51,7 +76,7 @@ const UserProvider = ({ children }) => {
       });
   };
 
-  const onSubmitLogin = (data) => {
+  const onSubmitLogin = (data: ILoginData) => {
     api
       .post("/sessions", data)
       .then((res) => {
@@ -87,17 +112,15 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <userContext.Provider
+    <UserContext.Provider
       value={{
-        user,
-        setUser,
         onSubmitLogin,
         logout,
         onSubmitRegister,
       }}
     >
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
 };
 

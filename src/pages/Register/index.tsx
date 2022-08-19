@@ -1,10 +1,10 @@
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formRegisterSchema } from "../../validations";
-import { userContext } from "../../providers/UserContext";
+import { UserContext } from "../../providers/UserContext";
 import { useContext, useState } from "react";
-import Lottie from "react-lottie";
 import Selection from "../../components/Selection";
+import Lottie from "react-lottie";
 
 import background from "../../assets/background.json";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,15 +17,25 @@ import {
   LinkStyled,
 } from "./styles";
 
+interface IUserRegister {
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
+
 const Register = () => {
-  const { onSubmitRegister } = useContext(userContext);
+  const { onSubmitRegister } = useContext(UserContext);
 
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(formRegisterSchema) });
+  } = useForm<IUserRegister>({ resolver: yupResolver(formRegisterSchema) });
 
   const [animateState] = useState({ isStopped: false, isPaused: false });
 
@@ -107,12 +117,8 @@ const Register = () => {
               defaultValue="Primeiro módulo (Introdução ao Frontend)"
               control={control}
               name="course_module"
-              render={({ field: { onChange, value, ref } }) => (
-                <Selection
-                  inputRef={ref}
-                  value={value}
-                  onChange={(event) => onChange(event.value)}
-                />
+              render={({ field: { onChange } }) => (
+                <Selection onChange={(event) => onChange(event.value)} />
               )}
             />
           </ContentSelect>

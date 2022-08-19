@@ -1,6 +1,10 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formLoginSchema } from "../../validations";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../providers/UserContext";
+import { useNavigate } from "react-router-dom";
+import Lottie from "react-lottie";
 
 import background from "../../assets/background.json";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,13 +15,14 @@ import {
   ErrorMessage,
   LinkStyled,
 } from "./styles";
-import { useContext, useEffect, useState } from "react";
-import { userContext } from "../../providers/UserContext";
-import { useNavigate } from "react-router-dom";
-import Lottie from "react-lottie";
+
+interface IUserLogin {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
-  const { onSubmitLogin } = useContext(userContext);
+  const { onSubmitLogin } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -32,7 +37,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(formLoginSchema) });
+  } = useForm<IUserLogin>({ resolver: yupResolver(formLoginSchema) });
 
   const [animateState] = useState({ isStopped: false, isPaused: false });
 

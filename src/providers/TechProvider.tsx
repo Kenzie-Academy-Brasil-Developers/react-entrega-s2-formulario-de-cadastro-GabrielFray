@@ -1,22 +1,62 @@
-import { createContext, useState } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { toast } from "react-toastify";
 
-import api from "../../services/api";
+import api from "../services/api";
 
-export const TechProviderContext = createContext({});
+export const TechProviderContext = createContext({} as ITechContext);
 
-const TechProvider = ({ children }) => {
-  const [techs, setTechs] = useState([]);
+interface IProps {
+  children: ReactNode;
+}
 
-  const [values, setValues] = useState("");
+interface ITechData {
+  id?: string;
+  title?: string;
+  status?: string;
+}
 
-  const [registerModal, setRegisterModal] = useState(false);
+interface ITechContext {
+  registerModal: boolean;
 
-  const [editModal, setEditModal] = useState(false);
+  setRegisterModal: Dispatch<SetStateAction<boolean>>;
+
+  editModal: boolean | string;
+
+  setEditModal: Dispatch<SetStateAction<boolean | string>>;
+
+  techs: [];
+
+  setTechs: Dispatch<SetStateAction<[]>>;
+
+  values: ITechData;
+
+  setValues: Dispatch<SetStateAction<{}>>;
+
+  createTech: (data: ITechData) => void;
+
+  editTech: (tech_id: string, data: ITechData) => void;
+
+  deleteTech: (tech_id: string, event: any) => void;
+}
+
+const TechProvider = ({ children }: IProps) => {
+  const [techs, setTechs] = useState<[]>([]);
+
+  const [registerModal, setRegisterModal] = useState<boolean>(false);
+
+  const [editModal, setEditModal] = useState<boolean | string>(false);
+
+  const [values, setValues] = useState<any>();
 
   const token = localStorage.getItem("@KenzieHub:token");
 
-  const createTech = (data) => {
+  const createTech = (data: ITechData) => {
     api
       .post("/users/techs", data, {
         headers: { Authorization: `Bearer ${token} ` },
@@ -48,7 +88,7 @@ const TechProvider = ({ children }) => {
       });
   };
 
-  const editTech = (tech_id, data) => {
+  const editTech = (tech_id: string, data: ITechData) => {
     api
       .put(`/users/techs/${tech_id}`, data, {
         headers: { Authorization: `Bearer ${token} ` },
@@ -69,7 +109,8 @@ const TechProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const deleteTech = (tech_id) => {
+  const deleteTech = (tech_id: string, event: any) => {
+    event.stopPropagation();
     api
       .delete(`/users/techs/${tech_id}`, {
         headers: { Authorization: `Bearer ${token} ` },
@@ -95,14 +136,14 @@ const TechProvider = ({ children }) => {
         registerModal,
         setRegisterModal,
         editModal,
+        editTech,
         setEditModal,
-        setTechs,
         techs,
+        setTechs,
         createTech,
         deleteTech,
         values,
         setValues,
-        editTech,
       }}
     >
       {children}
