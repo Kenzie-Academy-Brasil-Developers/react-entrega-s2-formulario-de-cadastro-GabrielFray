@@ -2,7 +2,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useContext } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { formCreateModalSchema } from "../../validations";
-import { TechProviderContext } from "../../providers/TechProvider";
+import { TechProviderContext } from "../../context/TechContext";
 import { AiOutlineClose } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 import SelectEdit from "../SelectEdit";

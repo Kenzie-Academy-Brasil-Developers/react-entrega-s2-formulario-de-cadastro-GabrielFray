@@ -2,9 +2,9 @@ import Routes from "./routes";
 
 import { ToastContainer } from "react-toastify";
 
-import UserProvider from "./providers/UserContext";
+import UserProvider from "./context/UserContext";
 
-import TechProvider from "./providers/TechProvider";
+import TechProvider from "./context/TechContext";
 
 function App() {
   return (
