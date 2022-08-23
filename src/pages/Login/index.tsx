@@ -3,8 +3,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { formLoginSchema } from "../../validations";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
-import { useNavigate } from "react-router-dom";
-import Lottie from "react-lottie";
+import { useNavigate } from "react-router-dom"; 
+import Lottie from "react-lottie"
 
 import background from "../../assets/background.json";
 import "react-toastify/dist/ReactToastify.css";
