@@ -1,49 +1,10 @@
-import {
-  createContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-} from "react";
 import { toast } from "react-toastify";
+import { createContext, useState } from "react";
+import { IProps, ITechContext, ITechData } from "../interfaces";
 
 import api from "../services/api";
 
 export const TechProviderContext = createContext({} as ITechContext);
-
-interface IProps {
-  children: ReactNode;
-}
-
-interface ITechData {
-  id?: string;
-  title?: string;
-  status?: string;
-}
-
-interface ITechContext {
-  registerModal: boolean;
-
-  setRegisterModal: Dispatch<SetStateAction<boolean>>;
-
-  editModal: boolean | string;
-
-  setEditModal: Dispatch<SetStateAction<boolean | string>>;
-
-  techs: [];
-
-  setTechs: Dispatch<SetStateAction<[]>>;
-
-  values: ITechData;
-
-  setValues: Dispatch<SetStateAction<{}>>;
-
-  createTech: (data: ITechData) => void;
-
-  editTech: (tech_id: string, data: ITechData) => void;
-
-  deleteTech: (tech_id: string) => void;
-}
 
 const TechProvider = ({ children }: IProps) => {
   const [techs, setTechs] = useState<[]>([]);
@@ -105,8 +66,7 @@ const TechProvider = ({ children }: IProps) => {
           progress: undefined,
         });
         setEditModal(false);
-      })
-      .catch((err) => console.log(err));
+      });
   };
 
   const deleteTech = (tech_id: string) => {

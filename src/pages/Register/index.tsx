@@ -7,6 +7,7 @@ import Selection from "../../components/Selection";
 import Lottie from "react-lottie";
 
 import background from "../../assets/background.json";
+import { IUserRegister } from "../../interfaces";
 import "react-toastify/dist/ReactToastify.css";
 import {
   ContentImage,
@@ -17,15 +18,7 @@ import {
   LinkStyled,
 } from "./styles";
 
-interface IUserRegister {
-  name: string;
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  bio: string;
-  contact: string;
-  course_module: string;
-}
+
 
 const Register = () => {
   const { onSubmitRegister } = useContext(UserContext);

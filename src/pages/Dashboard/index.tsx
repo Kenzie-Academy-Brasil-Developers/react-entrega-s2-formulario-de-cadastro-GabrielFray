@@ -21,12 +21,7 @@ import {
 } from "./styles";
 import EditTechModal from "../../components/EditTechModal";
 import api from "../../services/api";
-
-interface ITechData {
-  id: string;
-  title: string;
-  status: string;
-}
+import { ITechData } from "../../interfaces";
 
 const Dashboard = () => {
   const { logout } = useContext(UserContext);

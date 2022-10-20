@@ -1,29 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { ILoginData, IProps, IRegisterData } from "../interfaces";
 import { createContext, useEffect, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../services/api";
 
 export const UserContext = createContext({} as IUserContext);
-
-interface IProps {
-  children: ReactNode;
-}
-
-interface IRegisterData {
-  email: string;
-  password: string;
-  name: string;
-  bio: string;
-  contact: string;
-  course_module: string;
-}
-
-interface ILoginData {
-  email: string;
-  password: string;
-}
-
 interface IUserContext {
   onSubmitRegister: (data: IRegisterData) => void;
 
